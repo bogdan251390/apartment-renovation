@@ -62,7 +62,7 @@
 							</ul>
 						</div>
 						<div class="hero-image" data-aos="fade-right" data-aos-delay="400">
-							<img src="img/main.png" alt="">
+							<img src="img/main.jpg" alt="">
 						</div>
 					</div>
 				</div>
@@ -117,7 +117,7 @@
 					<div class="cards">
 						<div class="card" data-aos="zoom-out" data-aos-delay="200">
 							<div class="card__image">
-								<img class="price__image" src="img/price/1.png" alt="">
+								<img class="price__image" src="img/price/1.jpg" alt="">
 							</div>
 							<div class="card__text">
 								<h4 class="card__title">Ремонт ванных комнат и с/у</h4>
@@ -126,7 +126,7 @@
 						</div>
 						<div class="card" data-aos="zoom-out" data-aos-delay="350">
 							<div class="card__image">
-								<img class="price__image" src="img/price/2.png" alt="">
+								<img class="price__image" src="img/price/2.jpg" alt="">
 							</div>
 							<div class="card__text">
 								<h4 class="card__title">Ремонт комнат и квартир</h4>
@@ -135,7 +135,7 @@
 						</div>
 						<div class="card" data-aos="zoom-out" data-aos-delay="500">
 							<div class="card__image">
-								<img class="price__image" src="img/price/3.png" alt="">
+								<img class="price__image" src="img/price/3.jpg" alt="">
 							</div>
 							<div class="card__text">
 								<h4 class="card__title">Отделка офисных помещений</h4>
@@ -144,7 +144,7 @@
 						</div>
 						<div class="card" data-aos="zoom-out" data-aos-delay="650">
 							<div class="card__image">
-								<img class="price__image" src="img/price/4.png" alt="">
+								<img class="price__image" src="img/price/4.jpg" alt="">
 							</div>
 							<div class="card__text">
 								<h4 class="card__title">Ремонт в новостройках</h4>
@@ -153,7 +153,7 @@
 						</div>
 						<div class="card" data-aos="zoom-out" data-aos-delay="800">
 							<div class="card__image">
-								<img class="price__image" src="img/price/5.png" alt="">
+								<img class="price__image" src="img/price/5.jpg" alt="">
 							</div>
 							<div class="card__text">
 								<h4 class="card__title">Ремонт кухонь</h4>
@@ -162,7 +162,7 @@
 						</div>
 						<div class="card" data-aos="zoom-out" data-aos-delay="950">
 							<div class="card__image">
-								<img class="price__image" src="img/price/6.png" alt="">
+								<img class="price__image" src="img/price/6.jpg" alt="">
 							</div>
 							<div class="card__text">
 								<h4 class="card__title">Ремонт дач и коттеджей</h4>
@@ -236,7 +236,7 @@
 					<div class="contracts-block">
 						<div class="contracts-item" data-aos="zoom-out-right" data-aos-delay="300">
 							<div class="contracts__image">
-								<a href="#" class="contracts__link"><img src="img/contracts/1.png" alt=""
+								<a href="#" class="contracts__link"><img src="img/contracts/1.jpg" alt=""
 										class="contracts__img"></a>
 							</div>
 							<div class="contracts__subtitle">
@@ -245,7 +245,7 @@
 						</div>
 						<div class="contracts-item" data-aos="zoom-out-up" data-aos-delay="300">
 							<div class="contracts__image">
-								<a href="#" class="contracts__link"><img src="img/contracts/1.png" alt=""
+								<a href="#" class="contracts__link"><img src="img/contracts/1.jpg" alt=""
 										class="contracts__img"></a>
 							</div>
 							<div class="contracts__subtitle">
@@ -256,7 +256,7 @@
 						</div>
 						<div class="contracts-item" data-aos="zoom-out-left" data-aos-delay="300">
 							<div class="contracts__image">
-								<a href="#" class="contracts__link"><img src="img/contracts/1.png" alt=""
+								<a href="#" class="contracts__link"><img src="img/contracts/1.jpg" alt=""
 										class="contracts__img"></a>
 							</div>
 							<div class="contracts__subtitle">
@@ -310,8 +310,8 @@
 			</section> <!-- Бриф -->
 		</main>
 		<footer class="footer">
-			<div class="map" id="map">
-				<script type="text/javascript" charset="utf-8" async
+			<div class="map" id="map_container">
+				<script id="ymap_lazy" type="text/javascript" charset="utf-8" async
 					src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae3f6f3be2808d1775f66a3355bdc65974aa71afd738b24bea86fcbbb59549ff5&amp;width=100%25&amp;height=640&amp;lang=ru_RU&amp;scroll=false"></script>
 			</div>
 			<div class="container">
@@ -366,6 +366,29 @@
 	<script src="js/modal.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/aos.js"></script>
+	<script>
+		let map_container = document.getElementById('map_container');
+		let options_map = {
+			once: true,//запуск один раз, и удаление наблюдателя сразу
+			passive: true,
+			capture: true
+		};
+		map_container.addEventListener('click', start_lazy_map, options_map);
+		map_container.addEventListener('mouseover', start_lazy_map, options_map);
+		map_container.addEventListener('touchstart', start_lazy_map, options_map);
+		map_container.addEventListener('touchmove', start_lazy_map, options_map);
+
+		let map_loaded = false;
+		function start_lazy_map() {
+			if (!map_loaded) {
+				let map_block = document.getElementById('ymap_lazy');
+				map_loaded = true;
+				map_block.setAttribute('src', map_block.getAttribute('data-src'));
+				map_block.removeAttribute('data_src');
+				console.log('YMAP LOADED');
+			}
+		}
+	</script>
 	<script>AOS.init();</script>
 	<script>
 		$(document).ready(function () {
